@@ -1,0 +1,4 @@
+<h1>Available currencies</h1>
+<div *ngFor="let currency of currencies; let idx = index" class="currency">
+  ID: {{ currency.id }} Type: {{ currency.attributes.currency_type }} Symbol: {{ currency.attributes.native_symbol }}
+</div>
