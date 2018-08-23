@@ -4,17 +4,22 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CurrenciesComponent } from './components/currencies/currencies.component';
+import { CurrencyComponent } from './components/currency/currency.component';
+import { AppRoutingModule } from './app-routing.module';
+import { CurrenciesService } from './services/currencies.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurrenciesComponent
+    CurrenciesComponent,
+    CurrencyComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [CurrenciesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
