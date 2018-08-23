@@ -10,6 +10,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CurrenciesService {
+  public currencies: any[];
   constructor(
     private http: HttpClient
   ) { }
@@ -17,10 +18,14 @@ export class CurrenciesService {
   private currenciesSource = new BehaviorSubject([]);
   currentCurrency = this.currenciesSource.asObservable();
 
-  changeCurrency(currency: any) {
+  changeCurrency(currency: any, currencies: any[]) {
+    this.currencies = currencies;
     this.currenciesSource.next(currency);
   }
-  getJSON(url: string): Observable<any> {
+  getCurrencies(url: string): Observable<any> {
+    return this.http.get(url);
+  }
+  getCurrency(url: string): Observable<any> {
     return this.http.get(url);
   }
 }

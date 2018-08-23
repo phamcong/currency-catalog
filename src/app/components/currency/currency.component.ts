@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CurrenciesService } from '../../services/currencies.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-currency',
@@ -12,21 +13,28 @@ export class CurrencyComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private cs: CurrenciesService
+    private cs: CurrenciesService,
+    private location: Location
   ) { }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(par => {
-        const currencyId = par['id'];
+    this.currency = {};
+    this.getCurrency();
+  }
+
+  getCurrency() {
+    const currencyId = this.route.snapshot.paramMap.get('id');
+    const currencyURL = `https://api.openfintech.io/v1/currencies/${currencyId}`;
+    this.cs.getCurrency(currencyURL)
+      .subscribe(res => {
+        this.currency = res['data'];
+        this.currency.mappedAttributes = Object.keys(this.currency.attributes)
+          .map(key => ({name: key, value: this.currency.attributes[key]}));
       });
-    this.cs.currentCurrency.subscribe(currency => this.currency = currency);
-    this.currency.mappedAttributes = Object.keys(this.currency.attributes).map(key => ({name: key, value: this.currency.attributes[key]}));
-    console.log(this.currency.mappedAttributes);
   }
 
   backToList() {
-    this.router.navigate([``]);
+    this.location.back();
   }
 
 }

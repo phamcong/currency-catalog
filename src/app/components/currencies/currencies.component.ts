@@ -14,21 +14,26 @@ export class CurrenciesComponent implements OnInit {
   selectedCurrency: any[];
 
   constructor(
-    public cs: CurrenciesService,
-    public router: Router,
+    private cs: CurrenciesService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.cs.getJSON('./../../assets/currencies.json')
-      .subscribe(data => {
-        this.currencies = data;
-        console.log(data);
-      });
-    this.cs.currentCurrency.subscribe(currency => this.selectedCurrency = currency)
+    this.getCurrencies();
   }
 
-  switchCurrency(currency: any) {
-    this.cs.changeCurrency(currency);
+  getCurrencies(): void {
+    const pageQty = 2;
+    const pageSize = 100; // get first 200 currencies
+    for (let i = 1; i <= pageQty; i++) {
+      const currenciesURL = `https://api.openfintech.io/v1/currencies?page[number]=${i}&page[size]=${pageSize}`;
+      this.cs.getCurrencies(currenciesURL)
+        .subscribe(res => {
+          this.currencies = (this.currencies === undefined) ? res['data'] : this.currencies.concat(res['data']);
+        });
+    }
+  }
+  switchCurrency(currency: any, currencies: any[]) {
     this.router.navigate([`#/currency/${currency.id}`]);
   }
 }
