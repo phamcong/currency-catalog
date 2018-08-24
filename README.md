@@ -1,27 +1,18 @@
-# CurrencySofteamKata
+# Currency Catalog Kata
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This application displays an interactive currency catalog. The main page displays all currencies (obtained via [OpenFinTech.io API](https://api.openfintech.io)) as a list (200 first currencies). When selecting a currency from the main page, additional information (all currency attributes) are displayed in a detail page.
 
-## Development server
++ An pagination is added at the end of the main page. By default, 10 currencies are displayed per page but this number could be changed (10, 50 or 100). 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
++ Currencies could be filtered by field (id, code, name, type). Search by `id` is enabled by default.
 
-## Code scaffolding
++ The application is also compatible with mobile and tablet. 2, 4 and 6 currencies per row are set for mobile, tablet and desktop respectively.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Run
+To launch project, you can clone or download the project then execute the following command:
+```
+cd currency-catalog
+npm install
+npm run build
+npm run start -- --port=8000 # run application on port 8000
+```
