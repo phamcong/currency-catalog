@@ -5,7 +5,7 @@
       <div class="col-sm-3">
         <form>
           <div class="form-group">
-            <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText" >
+            <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText" placeholder="search">
           </div>
         </form>
       </div>
@@ -16,10 +16,15 @@
         </ng-select>
       </div>
     </div>
-
-    <div *ngFor="let currency of currencies | filter: searchField:searchText | angularPaginator: { currentPage: currentPage, itemsPerPage: itemsPerPage }" class="currency">
-      <span (click)="switchCurrency(currency)">ID: {{ currency.id }} Type: {{ currency.attributes.currency_type }} Symbol: {{ currency.attributes.native_symbol }}</span>
-    </div>
+    <mat-grid-list [cols]="cols" rowHeight="2:1" class="currency-grid">
+      <mat-grid-tile
+        (click)="switchCurrency(currency)"
+        *ngFor="let currency of currencies | filter: searchField:searchText | angularPaginator: { currentPage: currentPage, itemsPerPage: itemsPerPage }" class="currency-tile">
+          ID: {{ currency.id }}
+          Type: {{ currency.attributes.currency_type }}
+          Symbol: {{ currency.attributes.native_symbol }}
+      </mat-grid-tile>
+    </mat-grid-list>
 
     <div class="row">
       <div class="col-sm-3">

@@ -3,3 +3,19 @@ div.currency {
   width: 250px;
   margin: 5px;
 }
+
+.currency-grid {
+  width: 100ch;
+  margin: 10px;
+}
+
+.currency-element {
+  display: flex;
+  flex-direction: column;
+  border-style: groove;
+  border-radius: 1px;
+}
+
+.currency-tile {
+  border-style: groove;
+}

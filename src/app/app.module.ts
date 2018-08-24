@@ -11,6 +11,7 @@ import { AngularPaginatorModule } from 'angular-paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FilterPipe } from './pipes/filter.pipe';
+import { MatGridListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     AngularPaginatorModule,
     ReactiveFormsModule,
     NgSelectModule,
-    FormsModule
+    FormsModule,
+    MatGridListModule
   ],
   providers: [CurrenciesService],
   bootstrap: [AppComponent]

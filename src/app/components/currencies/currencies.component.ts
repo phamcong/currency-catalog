@@ -21,6 +21,7 @@ export class CurrenciesComponent implements OnInit {
 
   searchText: string;
 
+  cols: number;
   constructor(
     private cs: CurrenciesService,
     private router: Router
@@ -33,6 +34,8 @@ export class CurrenciesComponent implements OnInit {
     this.searchFields = ['id', 'code', 'name', 'type'];
     this.searchField = 'id';
     this.searchText = '';
+
+    this.cols = (window.innerWidth < 768) ? 2 : ((window.innerWidth < 1280) ? 4 : 6);
   }
 
   getCurrencies(): void {
