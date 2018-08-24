@@ -1,7 +1,23 @@
 <div class="container">
   <div *ngIf="currencies !== undefined">
     <h1>Available currencies</h1>
-    <div *ngFor="let currency of currencies | angularPaginator: { currentPage: currentPage, itemsPerPage: itemsPerPage }" class="currency">
+    <div class="row">
+      <div class="col-sm-3">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText" >
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-2">
+        <ng-select [items]="searchFields"
+                   [clearable]="false"
+                   [(ngModel)]="searchField">
+        </ng-select>
+      </div>
+    </div>
+
+    <div *ngFor="let currency of currencies | filter: searchField:searchText | angularPaginator: { currentPage: currentPage, itemsPerPage: itemsPerPage }" class="currency">
       <span (click)="switchCurrency(currency)">ID: {{ currency.id }} Type: {{ currency.attributes.currency_type }} Symbol: {{ currency.attributes.native_symbol }}</span>
     </div>
 

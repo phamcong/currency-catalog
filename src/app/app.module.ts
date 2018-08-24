@@ -10,12 +10,14 @@ import { CurrenciesService } from './services/currencies.service';
 import { AngularPaginatorModule } from 'angular-paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     CurrenciesComponent,
-    CurrencyComponent
+    CurrencyComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

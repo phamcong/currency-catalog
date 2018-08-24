@@ -16,16 +16,23 @@ export class CurrenciesComponent implements OnInit {
   itemsPerPages: number[];
   itemsPerPage: number;
 
+  searchFields: string[];
+  searchField: string;
+
+  searchText: string;
+
   constructor(
     private cs: CurrenciesService,
-    private router: Router,
-    private fb: FormBuilder
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.getCurrencies();
     this.itemsPerPages = [10, 50, 100];
     this.itemsPerPage = 10;
+    this.searchFields = ['id', 'code', 'name', 'type'];
+    this.searchField = 'id';
+    this.searchText = '';
   }
 
   getCurrencies(): void {
