@@ -7,6 +7,9 @@ import { CurrenciesComponent } from './components/currencies/currencies.componen
 import { CurrencyComponent } from './components/currency/currency.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CurrenciesService } from './services/currencies.service';
+import { AngularPaginatorModule } from 'angular-paginator';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,11 @@ import { CurrenciesService } from './services/currencies.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularPaginatorModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+    FormsModule
   ],
   providers: [CurrenciesService],
   bootstrap: [AppComponent]

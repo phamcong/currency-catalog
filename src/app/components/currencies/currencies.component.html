@@ -1,4 +1,29 @@
-<h1>Available currencies</h1>
-<div *ngFor="let currency of currencies; let idx = index" class="currency">
-  <span (click)="switchCurrency(currency)">ID: {{ currency.id }} Type: {{ currency.attributes.currency_type }} Symbol: {{ currency.attributes.native_symbol }}</span>
+<div class="container">
+  <div *ngIf="currencies !== undefined">
+    <h1>Available currencies</h1>
+    <div *ngFor="let currency of currencies | angularPaginator: { currentPage: currentPage, itemsPerPage: itemsPerPage }" class="currency">
+      <span (click)="switchCurrency(currency)">ID: {{ currency.id }} Type: {{ currency.attributes.currency_type }} Symbol: {{ currency.attributes.native_symbol }}</span>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <ng-select [items]="itemsPerPages"
+                   [clearable]="false"
+                   [(ngModel)]="itemsPerPage">
+        </ng-select>
+      </div>
+      <div class="col-sm-9">
+        <app-angular-paginator
+          [boundaryLinks]="true"
+          [directionLinks]="true"
+          [maxSize]="4"
+          id="ANGULAR_PAGINATOR_DEFAULT"
+          firstText="<<"
+          previousText="Previous"
+          nextText="Next"
+          lastText=">>"
+          (pageChange)="currentPage = $event"></app-angular-paginator>
+      </div>
+    </div>
+  </div>
 </div>

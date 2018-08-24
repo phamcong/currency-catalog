@@ -4,7 +4,8 @@ import { CurrencyComponent } from './components/currency/currency.component';
 import { CurrenciesComponent } from './components/currencies/currencies.component';
 
 const routes: Routes = [
-  { path: '', component: CurrenciesComponent },
+  { path: '', redirectTo: '/currencies', pathMatch: 'full' },
+  { path: 'currencies', component: CurrenciesComponent },
   { path: '#/currency/:id', component: CurrencyComponent }
 ];
 

@@ -3,6 +3,7 @@ import { CurrenciesService } from '../../services/currencies.service';
 import { map } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-currencies',
@@ -11,15 +12,20 @@ import { Router } from '@angular/router';
 })
 export class CurrenciesComponent implements OnInit {
   currencies: any[];
-  selectedCurrency: any[];
+
+  itemsPerPages: number[];
+  itemsPerPage: number;
 
   constructor(
     private cs: CurrenciesService,
     private router: Router,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     this.getCurrencies();
+    this.itemsPerPages = [10, 50, 100];
+    this.itemsPerPage = 10;
   }
 
   getCurrencies(): void {
